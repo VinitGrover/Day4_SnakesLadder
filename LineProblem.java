@@ -2,7 +2,6 @@
 package com.bridgelabz;
 import java.util.Random;
 
-
 public class LineProblem {
     public static void main(String[] args) {
         System.out.println("Welcome to Snake and Ladder Simulator");
@@ -10,46 +9,77 @@ public class LineProblem {
 
         Random rnum = new Random();
 
-        int sum = 0, position = 0, options, pos = 0, timesDiceRoll = 0;
+        int diceRoll = 0, sum1 = 0, sum2 = 0, position = 0, options, pos = 0, timesDiceRoll = 0, turn = 0;
+        int positionAgain = 0;
 
-        while (sum < 101) {
+        String A = "", B = "";
+
+        while (sum1 < 101 || sum2 < 101) {
 
             timesDiceRoll++;
 
+            diceRoll = rnum.nextInt(6) + 1;
+
             options = rnum.nextInt(3);
-            int diceRoll = rnum.nextInt(6) + 1;
 
-            switch (options) {
+            if (options == 0) {
+                positionAgain += diceRoll;
+                continue;
+            } else if (options == 1)
+                position = -diceRoll;
+            else
+                position = diceRoll;
 
-                case 0:
-                    position = 0;
+            position += positionAgain;
+
+            if (turn == 0) {
+
+                sum1 += position;
+
+                if (sum1 < 100)
+                    pos = sum1;
+                if (sum1 > 100)
+                    sum1 = pos;
+                if (sum1 == 100) {
+                    A = "won";
                     break;
-                case 1:
-                    position = -diceRoll;
-                    break;
-                case 2:
-                    position = diceRoll;
-                    break;
+                }
+                if (sum1 <= 0)
+                    sum1 = 0;
 
             }
-            sum += position;
-            if (sum < 100)
-                pos = sum;
 
-            if (sum > 100)
-                sum = pos;
+            if (turn == 1) {
 
-            if (sum == 100)
-                break;
+                sum2 += position;
 
-            if (sum <= 0)
-                sum = 0;
+                if (sum2 < 100)
+                    pos = sum2;
 
-            System.out.println("Current position in the game : " + sum);
+                if (sum2 > 100)
+                    sum2 = pos;
+
+                if (sum2 == 100) {
+                    break;
+                }
+                if (sum2 <= 0)
+                    sum2 = 0;
+
+            }
+
+            turn = turn ^ 1;
+            positionAgain = 0;
+
+            System.out.println("Current position of A and B in the game is : " + sum1 + " " + sum2);
 
         }
-        System.out.println("Player has won after reaching top position : " + sum);
-        System.out.println("A total of " + timesDiceRoll + " times the dice has been rolled to win the game");
+
+        System.out.println("A total of " + (timesDiceRoll * 2 - 1) + " times die has rolled to win the game");
+
+        if (A == "won") {
+            System.out.println("Player A has won the game");
+        } else
+            System.out.println("player B has won the game");
+
     }
 }
-
