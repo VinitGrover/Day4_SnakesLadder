@@ -1,7 +1,7 @@
 
 package com.bridgelabz;
-
 import java.util.Random;
+
 
 public class LineProblem {
     public static void main(String[] args) {
@@ -52,3 +52,4 @@ public class LineProblem {
         System.out.println("A total of " + timesDiceRoll + " times the dice has been rolled to win the game");
     }
 }
+
