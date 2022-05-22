@@ -42,8 +42,7 @@ public class LineProblem {
 
             if (sum <= 0)
                 sum = 0;
-
-
+            
         }
         System.out.println("Player has won after reaching top position : " + sum);
     }
