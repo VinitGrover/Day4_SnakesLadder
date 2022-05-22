@@ -10,11 +10,9 @@ public class LineProblem {
 
         Random rnum = new Random();
 
-        int sum = 0, position = 0, options, pos = 0, timesDiceRoll = 0;
+        int sum = 0, position = 0, options, pos = 0;
 
         while (sum < 101) {
-
-            timesDiceRoll++;
 
             options = rnum.nextInt(3);
             int diceRoll = rnum.nextInt(6) + 1;
@@ -45,10 +43,8 @@ public class LineProblem {
             if (sum <= 0)
                 sum = 0;
 
-            System.out.println("Current position in the game : " + sum);
 
         }
         System.out.println("Player has won after reaching top position : " + sum);
-        System.out.println("A total of " + timesDiceRoll + " times the dice has been rolled to win the game");
     }
 }
